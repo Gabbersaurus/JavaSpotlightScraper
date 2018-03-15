@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class Dialog extends JDialog {
 
+    private boolean pressedStart;
     private JFormattedTextField preferredWidth;
     private JFormattedTextField preferredHeight;
 
@@ -46,12 +47,26 @@ public class Dialog extends JDialog {
         add(preferredHeight);
 
         JButton startButton = new JButton("Start");
-        startButton.addActionListener(e -> dispose());
+        startButton.addActionListener(e -> {
+            pressedStart = true;
+            dispose();
+        });
         add(startButton);
 
         JButton cancelButton = new JButton("Cancel");
-        cancelButton.addActionListener(e -> System.exit(0));
+        cancelButton.addActionListener(e -> {
+            dispose();
+        });
         add(cancelButton);
+    }
+
+    /**
+     * Returns a boolean which will be 'true' if the user pressed start and 'false' if not
+     *
+     * @return The boolean which shows if the user pressed the start button or not.
+     */
+    public boolean getPressedStart() {
+        return pressedStart;
     }
 
     /**

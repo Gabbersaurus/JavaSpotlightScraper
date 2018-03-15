@@ -125,10 +125,15 @@ public class GUI extends JFrame implements ScraperListener {
     private void showDialog() {
         Dialog dialog = new Dialog(this);
 
-        preferredWidth = dialog.getPreferredWidth();
-        preferredHeight = dialog.getPreferredHeight();
+        if(dialog.getPressedStart()) {
+            preferredWidth = dialog.getPreferredWidth();
+            preferredHeight = dialog.getPreferredHeight();
 
-        startScraper();
+            startScraper();
+        }
+        else {
+            System.exit(0);
+        }
     }
 
     /**
