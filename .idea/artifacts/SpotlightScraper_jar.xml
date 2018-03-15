@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SpotlightScraper:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SpotlightScraper_jar</output-path>
+    <root id="archive" name="SpotlightScraper.jar">
+      <element id="module-output" name="SpotlightScraper" />
+    </root>
+  </artifact>
+</component>
