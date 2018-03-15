@@ -37,20 +37,27 @@ public class Scraper {
     public void start() {
         new Thread(() -> {
             log("Starting scraper");
-            File[] files = getAbsoluteSpotlightPath().toFile().listFiles();
+            File spotlightFile = getAbsoluteSpotlightPath().toFile();
 
-            try {
-                log("Found " + String.valueOf(files.length) + " files");
+            if(spotlightFile.exists()) {
+                File[] files = spotlightFile.listFiles();
 
-                for(File file : files) {
-                    log("Handling " + file.getName());
-                    storeImageIfCorrect(file);
+                try {
+                    log("Found " + String.valueOf(files.length) + " files");
+
+                    for(File file : files) {
+                        log("Handling " + file.getName());
+                        storeImageIfCorrect(file);
+                    }
+
+                    log("Finished scraping, accepted " + scrapedImages.size() + " images");
+                    finish();
+                } catch(Exception e) {
+                    log(e.toString());
                 }
-
-                log("Finished scraping, accepted " + scrapedImages.size() + " images");
-                finish();
-            } catch(Exception e) {
-                log(e.toString());
+            }
+            else {
+                log("Could not find the Windows Spotlight folder, are you sure you are running Windows 10?");
             }
         }).start();
     }
